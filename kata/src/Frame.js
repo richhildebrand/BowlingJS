@@ -25,7 +25,7 @@ function() {
 
 
    Frame.prototype.IsClosed = function() {
-      return this.FirstThrow === 10 
+      return this.IsStrike()
           || this.SecondThrow !== undefined;
    };
 

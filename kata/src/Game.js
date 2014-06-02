@@ -38,13 +38,27 @@ function(Frame) {
    };
 
    Game.prototype.AddPointsForStrike = function(pins) {
+      if (this.LastTwoFramesAreStrikes()) {
+         this.Score += pins * 2;
+      } else if (this.PreviousFrameIsStrike())
+      {
+         this.Score += pins;
+      }
+   };
+
+   Game.prototype.PreviousFrameIsStrike = function() {
       if (this.ActiveFrame > 1) {
          var previousFrame = this.Frames[this.ActiveFrame - 1];
-         if (previousFrame.IsStrike()) {
-            this.Score += pins;
-         }
-      };
-   }
+         return previousFrame.IsStrike();
+      }
+   };
+
+   Game.prototype.LastTwoFramesAreStrikes = function() {
+      if (this.ActiveFrame > 2) {
+         return this.Frames[this.ActiveFrame - 1].IsStrike()
+             && this.Frames[this.ActiveFrame - 2].IsStrike();
+      }
+   };
 
    return Game;
 });
