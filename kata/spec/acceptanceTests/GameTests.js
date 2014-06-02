@@ -32,6 +32,25 @@ define(['Squire'], function(Squire) {
          game.Roll(5);
          game.Roll(2);
          expect(game.ActiveFrame).to.equal(2);
-      })
+      });
+
+      it('be on frame two', function() {
+         game.Roll(10);
+         expect(game.ActiveFrame).to.equal(2);
+      });
+
+      it('score 15', function() {
+         game.Roll(7);
+         game.Roll(3);
+         game.Roll(5);
+         expect(game.Score).to.equal(20);
+      });
+
+      it('score 18', function() {
+         game.Roll(10);
+         game.Roll(2);
+         game.Roll(2);
+         expect(game.Score).to.equal(18);
+      });
    });
 });

@@ -15,9 +15,18 @@ function() {
       }
    };
 
+   Frame.prototype.IsSpare = function() {
+      return (this.FirstThrow + this.SecondThrow) === 10;
+   }
+
+   Frame.prototype.IsStrike = function() {
+      return this.FirstThrow === 10;
+   }
+
+
    Frame.prototype.IsClosed = function() {
-      return this.FirstThrow !== undefined 
-          && this.SecondThrow !== undefined;
+      return this.FirstThrow === 10 
+          || this.SecondThrow !== undefined;
    };
 
    return Frame;
