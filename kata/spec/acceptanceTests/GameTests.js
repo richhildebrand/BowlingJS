@@ -65,5 +65,13 @@ define(['Squire'], function(Squire) {
          game.Roll(5); //5
          expect(game.Score).to.equal(45);
       });
+
+      it('score 49', function() {
+         game.Roll(10); //25
+         game.Roll(10); //17
+         game.Roll(5); //5
+         game.Roll(2); //2
+         expect(game.Score).to.equal(49);
+      });
    });
 });

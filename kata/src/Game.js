@@ -18,7 +18,6 @@ function(Frame) {
 
       var frame = this.Frames[this.ActiveFrame];
       frame.ScoreRoll(pins);
-
       this.AddPointsForSpare(pins);
       this.AddPointsForStrike(pins);
 
@@ -38,7 +37,7 @@ function(Frame) {
    };
 
    Game.prototype.AddPointsForStrike = function(pins) {
-      if (this.LastTwoFramesAreStrikes()) {
+      if (this.LastTwoFramesAreStrikes() && this.FirstRoll()) {
          this.Score += pins * 2;
       } else if (this.PreviousFrameIsStrike())
       {
@@ -59,6 +58,11 @@ function(Frame) {
              && this.Frames[this.ActiveFrame - 2].IsStrike();
       }
    };
+
+   Game.prototype.FirstRoll = function () {
+      var currentFrame = this.Frames[this.ActiveFrame];
+      return currentFrame.SecondThrow === undefined;
+   }
 
    return Game;
 });
