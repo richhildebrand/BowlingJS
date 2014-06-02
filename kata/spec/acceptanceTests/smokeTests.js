@@ -1,27 +1,37 @@
 define(['Squire'], function(Squire) {
-   describe('Smoke test should', function() {
+   describe('Game should', function() {
       'use strict';
 
-      var Main = undefined;
+      var game = undefined;
 
       beforeEach(function(done) {
          var testContext = new Squire();
 
-         testContext.require(['Main'], function(main) {
-            testContext.Main = main;
-            Main = testContext.Main;
+         testContext.require(['Game'], function(Game) {
+            game = new Game();
             done();
          });
       });
 
-      it('pass', function() {
-         var main = new Main(false);
-         expect(main.OurBoolean).to.be.false;
+      it('start at zero', function() {
+         expect(game.Score).to.be;
       });
 
-      it('fail', function() {
-         var main = new Main(false);
-         expect(main.OurBoolean).to.be.true;
+      it('score five', function() {
+         game.Roll(5);
+         expect(game.Score).to.equal(5);
       });
+
+      it('score seven', function() {
+         game.Roll(5);
+         game.Roll(2);
+         expect(game.Score).to.equal(7);
+      });
+
+      it('be on frame two', function() {
+         game.Roll(5);
+         game.Roll(2);
+         expect(game.ActiveFrame).to.equal(2);
+      })
    });
 });
