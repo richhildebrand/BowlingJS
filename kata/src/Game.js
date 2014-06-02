@@ -14,7 +14,9 @@ function(Frame) {
    Game.prototype.Fames;
 
    Game.prototype.Roll = function(pins) {
-      this.Score += pins;
+      if (this.ActiveFrame <= 10) {
+         this.Score += pins;
+      }
 
       var frame = this.Frames[this.ActiveFrame];
       frame.ScoreRoll(pins);
@@ -30,7 +32,7 @@ function(Frame) {
    Game.prototype.AddPointsForSpare = function(pins) {
       if (this.ActiveFrame > 1) {
          var previousFrame = this.Frames[this.ActiveFrame - 1];
-         if (previousFrame.IsSpare()) {
+         if (previousFrame.IsSpare() && this.FirstRoll()) {
             this.Score += pins;
          }
       };

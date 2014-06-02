@@ -46,6 +46,14 @@ define(['Squire'], function(Squire) {
          expect(game.Score).to.equal(20);
       });
 
+      it('score 15', function() {
+         game.Roll(7);
+         game.Roll(3); //spare
+         game.Roll(5);
+         game.Roll(2)
+         expect(game.Score).to.equal(22);
+      });
+
       it('score 18', function() {
          game.Roll(10); //14
          game.Roll(2);
@@ -72,6 +80,40 @@ define(['Squire'], function(Squire) {
          game.Roll(5); //5
          game.Roll(2); //2
          expect(game.Score).to.equal(49);
+      });
+
+      it('score 133', function() {
+         game.Roll(1);
+         game.Roll(4);
+                        //5
+         game.Roll(4);
+         game.Roll(5);
+                       //14
+         game.Roll(6);
+         game.Roll(4);
+                       //24
+         game.Roll(5);
+         game.Roll(5);
+                       //39
+         game.Roll(10);
+
+         game.Roll(0);
+         game.Roll(1);
+
+         game.Roll(7);
+         game.Roll(3);
+
+         game.Roll(6);
+         game.Roll(4);
+
+         game.Roll(10);
+
+         game.Roll(2);
+         game.Roll(8);
+
+         game.Roll(6);
+
+         expect(game.Score).to.equal(133);
       });
    });
 });
